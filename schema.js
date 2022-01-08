@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const { getLaunches } = require('./services');
+const { getLaunches, getLaunch, getRockets, getRocket } = require("./services");
 
 const {
     GraphQLSchema,
@@ -38,7 +38,25 @@ const RootQuery = new GraphQLObjectType({
     fields: () => ({
         launches: {
             type: new GraphQLList(LaunchType),
-            resolve: () => getLaunches()
+            resolve: () => getLaunches(),
+        },
+        launch: {
+            type: LaunchType,
+            args: {
+                flight_number: { type: GraphQLInt },
+            },
+            resolve: (parent, args) => getLaunch(args.flight_number),
+        },
+        rockets: {
+            type: new GraphQLList(RocketType),
+            resolve: () => getRockets(),
+        },
+        rocket: {
+            type: RocketType,
+            args: {
+                rocket_id: { type: GraphQLString },
+            },
+            resolve: (parent, args) => getRocket(args.rocket_id),
         },
     }),
 });
