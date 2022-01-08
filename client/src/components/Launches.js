@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
+
+import LaunchItem from "./LaunchItem";
 
 const LAUNCHES_QUERY = gql`
     query LaunchesQuery {
@@ -18,12 +20,14 @@ const Launches = () => {
     console.log("HERE IS DATA", loading, error, data);
 
     if (loading) return <h1 className="display-5 my-3">LOADING...</h1>;
-    if (error) return <h1 className="display-5 my-3">THERE WAS AN ERROR</h1>;
+    if (error) return <h1 className="display-5 my-3">THERE WAS AN ERROR: {error.message}</h1>;
 
     return (
-        <div>
-            <h1 className="display-5 my-3">Launches</h1>
-        </div>
+        <>
+            {data.launches.map((item, index) => (
+                <LaunchItem key={index} item={item} />
+            ))}
+        </>
     );
 };
 

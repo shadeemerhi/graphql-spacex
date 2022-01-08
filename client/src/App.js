@@ -1,6 +1,6 @@
 import "./App.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import Launches from "./components/Launches";
+import LaunchWrapper from "./components/LaunchWrapper";
 
 const client = new ApolloClient({
     uri: "http://localhost:4000/graphql",
@@ -12,7 +12,7 @@ function App() {
         <ApolloProvider client={client}>
             <div className="App">
                 <h1>SpaceX GraphQL</h1>
-                <Launches />
+                <LaunchWrapper />
             </div>
         </ApolloProvider>
     );
