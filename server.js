@@ -5,9 +5,6 @@ const schema = require('./schema');
 
 const app = express();
 
-const schema = new GraphQLSchema({
-    query,
-});
 
 app.use(
     "/graphql",
