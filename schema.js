@@ -1,5 +1,7 @@
 const axios = require("axios");
 
+const { getLaunches } = require('./services');
+
 const {
     GraphQLSchema,
     GraphQLObjectType,
@@ -36,11 +38,7 @@ const RootQuery = new GraphQLObjectType({
     fields: () => ({
         launches: {
             type: new GraphQLList(LaunchType),
-            resolve(parent, args) {
-                return axios
-                    .get("https://api.spacexdata.com/v3/launches")
-                    .then((res) => res.data);
-            },
+            resolve: () => getLaunches()
         },
     }),
 });
