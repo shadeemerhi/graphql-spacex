@@ -1,7 +1,8 @@
 import React from "react";
 
 import classNames from "classnames";
-import Moment from 'react-moment';
+import Moment from "react-moment";
+import { Link } from "react-router-dom";
 
 const LaunchItem = ({ item }) => {
     return (
@@ -19,11 +20,19 @@ const LaunchItem = ({ item }) => {
                         </span>
                     </h4>
                     <p>
-                        <Moment format="YYYY-MM-DD HH:mm">{item.launch_date_local}</Moment>
+                        <Moment format="YYYY-MM-DD HH:mm">
+                            {item.launch_date_local}
+                        </Moment>
                     </p>
                 </div>
                 <div className="col-md-3">
-                    <button className="btn btn-primary">Details</button>
+                    <Link
+                        to={`/launches/${item.flight_number}`}
+                        className="btn btn-primary"
+                    >
+                        Details
+                    </Link>
+                    {/* <button className="btn btn-primary">Details</button> */}
                 </div>
             </div>
         </div>
